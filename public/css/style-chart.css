@@ -1,0 +1,13 @@
+.chart-container {
+    padding: 30px;
+    width: 100%;
+    height: 60vh;
+    align-items: center;
+    border: 1px solid #fa0909;
+  }
+  
+  @media (max-width: 768px) { /* Adjust breakpoint as needed */
+    .chart-container {
+      padding: 0; /* Reduce padding on smaller screens */
+    }
+  }

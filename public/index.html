@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Flood Control System in Dagupan City</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./css/style-weather.css">
+    <link rel="stylesheet" href="./css/style-main.css">
+    <link rel="stylesheet" href="./css/style-modal.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script src="./js/firebase.js"></script>
+  </head>
+</head>
+
+<body>
+
+
+
+  <div id="wrapper" class="wrapper">
+    <div class="modal left fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Flood Control System in Dagupan City</h4>
+          </div>
+
+          <div class="modal-body">
+            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+              moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+              Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+              shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+              proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+              aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </p>
+          </div>
+
+        </div><!-- modal-content -->
+      </div><!-- modal-dialog -->
+    </div><!-- modal -->
+
+
+    <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+      aria-hidden="true">
+      <div class="contact-box">
+        <h2>Get Text updates</h2>
+        <form>
+          <div class="user-box">
+            <input type="text" name="name" required="">
+            <label>Name</label>
+          </div>
+          <div class="user-box">
+            <input type="tel" name="phoneNumber" required="" maxlength="11">
+            <label>Phone Number</label>
+          </div>
+          <a href="#" id="submit">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+          </a>
+        </form>
+      </div>
+    </div>
+
+
+    <nav class="navbar">
+      <div class="logo">
+        <img src="./images/logo.png" alt="Logo">
+        <span class="title">Flood Control System in Dagupan City</span>
+      </div>
+      <div class="hamburger">
+        <div class="line">-</div>
+        <div class="line">-</div>
+        <div class="line">-</div>
+      </div>
+      <div class="nav-links-box">
+        <ul class="nav-links">
+          <li>
+            <div class="text-center modalButton">
+              <a href="" class="btn btn-default btn-rounded mb-4 modal-button" data-toggle="modal"
+                data-target="#modalSubscriptionForm">Get Updates</a>
+            </div>
+          </li>
+          <li>
+            <div class="text-center modalButton info">
+              <a href="" class="btn btn-default btn-rounded mb-4 modal-button" data-toggle="modal"
+                data-target="#myModal">What?</a>
+            </div>
+          </li>
+          <li>
+            <div class="text-center modalButton pdf">
+              <a id="download"><i class="fas fa-download"></i></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <table class="fujita-table">
+      <caption>Flood Update</caption>
+      <colgroup></colgroup>
+      <colgroup></colgroup>
+      <thead>
+        <tr>
+          <th scope="col" rowspan="2">Rating</th>
+          <th scope="col" rowspan="2">Water Height Estimate (FEET)</th>
+          <th scope="col" rowspan="2">Location</th>
+        </tr>
+      </thead>
+      <tbody class="floodupdate">
+        <tr>
+          <td data-th="Rating" class="rate"></td>
+          <td data-th="height" class="height">1</td>
+          <td data-th="Location" class="location">1</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+
+    <div class="container weatherApp-container">
+      <div class="weather-input">
+        <h3>Select a City</h3>
+        <select class="city-input">
+          <option value="Bonuan Gueset">Bonuan Gueset</option>
+          <option value="Tebeng">Tebeng</option>
+          <option value="Mamalingling">Mamalingling</option>
+          <option value="Lasip Chico">Lasip Chico</option>
+          <option value="Mayombo District">Mayombo District</option>
+          <option value="Pogo Chico">Pogo Chico</option>
+          <option value="Malued">Malued</option>
+          <option value="Tapuac">Tapuac</option>
+          <option value="Lucao">Lucao</option>
+          <option value="Calmay">Calmay</option>
+          <option value="Carael">Carael</option>
+          <option value="Anolid">Anolid</option>
+          <option value="Amancoro">Amancoro</option>
+
+          <!-- Add more city options as needed -->
+        </select>
+        <button class="search-btn">Search</button>
+        <div class="separator"></div>
+        <button class="location-btn">Use Current Location</button>
+      </div>
+      <div class="weather-data">
+        <div class="current-weather">
+          <div class="details">
+            <h2>_______ ( ______ )</h2>
+            <h6>Temperature: __°C</h6>
+            <h6>Wind: __ M/S</h6>
+            <h6>Humidity: __%</h6>
+          </div>
+        </div>
+        <div class="days-forecast">
+          <h2>5-Day Forecast</h2>
+          <ul class="weather-cards">
+            <li class="card">
+              <h3>( ______ )</h3>
+              <h6>Temp: __C</h6>
+              <h6>Wind: __ M/S</h6>
+              <h6>Humidity: __%</h6>
+            </li>
+            <li class="card">
+              <h3>( ______ )</h3>
+              <h6>Temp: __C</h6>
+              <h6>Wind: __ M/S</h6>
+              <h6>Humidity: __%</h6>
+            </li>
+            <li class="card">
+              <h3>( ______ )</h3>
+              <h6>Temp: __C</h6>
+              <h6>Wind: __ M/S</h6>
+              <h6>Humidity: __%</h6>
+            </li>
+            <li class="card">
+              <h3>( ______ )</h3>
+              <h6>Temp: __C</h6>
+              <h6>Wind: __ M/S</h6>
+              <h6>Humidity: __%</h6>
+            </li>
+            <li class="card">
+              <h3>( ______ )</h3>
+              <h6>Temp: __C</h6>
+              <h6>Wind: __ M/S</h6>
+              <h6>Humidity: __%</h6>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="tidedamContainer">
+      <div id="tideContainer"></div>
+
+      <div class="dam-container">
+        <div class="dam-title">DAM Updates</div>
+        <div id="tableContainer"></div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+
+
+
+
+  <script src="./js/floodupdate.js"></script>
+  <script src="./js/Tide.js"></script>
+  <script src="./js/DamInformation.js"></script>
+  <script src="./js/WeatherApi.js"></script>
+  <script src="./js/contactInfo.js"></script>
+  <script src="./js/pdf.js"></script>
+</body>
+
+</html>
+
+
+
+<style media="print">
+  body {
+    visibility: visible;
+  }
+
+  /* Remove any overflow hidden properties */
+  *,
+  *:before,
+  *:after {
+    overflow: visible !important;
+  }
+</style>
+
+
+
+
+</style>

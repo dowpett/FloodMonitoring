@@ -1,0 +1,373 @@
+/* Global Styles */
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.618;
+    text-align: left;
+    position: relative;
+    overflow-y: scroll;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Shared Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style the navigation bar */
+.navbar {
+    background-color: #2970A0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo img {
+    max-width: 100px;
+    /* Adjust the size as needed */
+}
+
+/* Style the logo */
+.title {
+    color: #fff;
+    font-size: 32px;
+    font-weight: bold;
+    /* Adjust the font size as needed */
+    margin-left: 10px;
+    /* Add spacing between the logo and title */
+}
+
+/* Style the navigation links */
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.container-border {
+    margin: 13px;
+}
+
+.modalButton {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Specific Styles */
+.wrapper {
+    background-color: #E3EFF8;
+}
+
+.flooUpdate-container,
+.weatherApp-container,
+#tideContainer,
+.dam-container {
+    place-items: center;
+    background-color: #2a83b360;
+    border-radius: 16px;
+    color: #C7C1BE;
+}
+
+.fujita-table {
+    background-color: #fff;
+    position: relative;
+    font-size: large;
+    font-weight: bold;
+    color: #000;
+    max-width: 980px !important;
+    /* Change the max-width to your desired value */
+    margin: 0 auto !important;
+    /* Center the table within its container */
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #000;
+    width: 100%;
+    /* Set the table to 100% width */
+}
+
+.fujita-table thead th,
+.fujita-table tbody td {
+    text-align: center;
+}
+
+.fujita-table th,
+.fujita-table td {
+    padding: 5.25rem 0.5rem;
+}
+
+.fujita-table tbody {
+    border: 0;
+    transition: all 0.333s ease;
+}
+
+.fujita-table tbody td {
+    transition: all 0.333s ease;
+}
+
+.fujita-table a {
+    color: #38487a;
+    transition: all 0.333s ease;
+}
+
+.fujita-table a:hover {
+    color: #be0000;
+}
+.fujita-table tbody,.fujita-table tr,.fujita-table td, .fujita-table th {
+    padding: 5.25rem 0.5rem !important;
+}
+
+#tableContainer,
+#tideContainer,
+.dam-container {
+    overflow-x: auto;
+    overflow-y: auto;
+    margin: 3rem;
+}
+
+.weatherApp-container,
+#tideContainer {
+    margin-bottom: 13px;
+}
+
+.tidedamContainer {
+    padding: 5rem;
+}
+
+.dam-container table,
+.dam-table,
+.tidechart {
+    background-color: #4b60bd6e;
+    font-weight: 300;
+    color: #07131D;
+}
+.table, thead, tr, th, td {
+    padding: 0 !important;
+}
+
+table caption,
+.caption {
+    color: #07141C;
+    font-size: 3.5rem;
+    width: 100%;
+    text-align: center;
+}
+.dam-title{
+    color: #07141C;
+    font-size: 3.5rem;
+    width: 100%;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #3fb2f060;
+}
+
+
+
+/* Media Queries */
+@media (max-width: 799px) {
+    .title {
+        display: none;
+        /* Hide the title on small screens */
+    }
+
+    .modal-button {
+        padding: 5px 10px;
+        /* Make buttons smaller on small screens */
+    }
+
+   
+
+    table caption,
+    .caption {
+        color: #07141C;
+        font-size: 2.5rem;
+    }
+
+    .fujita-table {
+        font-size: 13.625px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+        /* Remove padding for smaller screens */
+    }
+
+    .fujita-table tbody tr {
+        display: block;
+        /* Change the display property */
+        margin-bottom: 16px;
+        width: 100%;
+        /* Set the width to 100% */
+    }
+
+    .fujita-table tbody tr td {
+        border: none;
+        display: block;
+        /* Change the display property */
+        width: 100%;
+        height: 10rem;
+        /* Set the width to 100% */
+        padding: 0.5rem;
+        font-size: 3rem;
+    }
+
+    .modalButton {
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 600px) {
+    .fujita-table thead {
+        display: none;
+    }
+
+    .fujita-table caption {
+        display: none;
+    }
+
+    .flooUpdate-container {
+        padding: 0;
+    }
+}
+
+@media (min-width: 481px) {
+    .fujita-table tbody td:before {
+        display: none;
+    }
+
+    .fujita-table th,
+    .fujita-table td {
+        display: table-cell;
+    }
+
+    .fujita-table th:first-child,
+    .fujita-table td:first-child {
+        padding-left: 0;
+    }
+
+    .fujita-table th:last-child,
+    .fujita-table td:last-child {
+        padding-right: 0;
+    }
+
+    .fujita-table thead tr th[scope=col] {
+        padding: 0.25rem 0.5rem;
+    }
+
+    .fujita-table tfoot {
+        border: 1px solid #e5e5e5;
+    }
+
+    .fujita-table p.fine-print {
+        padding: 16px 24px;
+    }
+
+    .tidedamContainer {
+        padding: 5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .fujita-table tbody tr td[class*=scale_] {
+        height: auto;
+    }
+
+    .fujita-table tbody td {
+        border: none;
+    }
+
+    .fujita-table tbody tr td:first-child {
+        padding: 0.5rem;
+    }
+
+    .fujita-table tbody tr td:last-child {
+        width: auto;
+        padding: 0.5rem 0.5rem 16px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .fujita-table tbody tr td:before {
+        margin: 0 5px 0 0;
+    }
+
+    .fujita-table thead th,
+    .fujita-table tbody td {
+        text-align: left;
+    }
+
+    .fujita-table caption {
+        margin-bottom: 0.5rem;
+    }
+
+    .fujita-table tbody tr {
+        display: inline-block;
+        margin-bottom: 16px;
+    }
+
+    .fujita-table tbody:hover>tr td,
+    .fujita-table tbody:hover>tr td a {
+        opacity: 1;
+        text-shadow: none;
+        zoom: 1;
+    }
+
+    .fujita-table tbody:hover>tr td {
+        color: #000;
+    }
+
+    .fujita-table tbody:hover>tr td a {
+        color: #38487a;
+    }
+
+    .tidedamContainer {
+        padding: 0;
+    }
+}
